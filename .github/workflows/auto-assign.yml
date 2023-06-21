@@ -7,4 +7,4 @@ jobs:
     steps:
       - uses: kentaro-m/auto-assign-action@v1.2.4
         with:
-          repo-token: '${{ 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 }}'
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
