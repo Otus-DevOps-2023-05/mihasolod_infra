@@ -1,7 +1,7 @@
 # mihasolod_infra
 mihasolod Infra repository
 
-ДЗ №3.
+ДЗ №4.
 
 1. Исследовать способ подключения к someinternalhost в одну команду.
 Решение:
