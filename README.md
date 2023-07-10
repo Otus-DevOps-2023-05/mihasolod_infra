@@ -1,14 +1,16 @@
 # mihasolod_infra
 mihasolod Infra repository
 
-ДЗ №4.
+## ДЗ №4.
 
 1. Исследовать способ подключения к someinternalhost в одну команду.
+
 Решение:
-
+```sh
 ssh -i appuser -A -t appuser@51.250.3.116 ssh 10.128.0.19
-
+```
 2. Предложить вариант решения для подключения из консоли при помощи команды вида ssh someinternalhost из локальной консоли рабочего устройства, чтобы подключение выполнялось по алиасу someinternalhost.
+
 Решение:
 
 Добавить в ~/.ssh/config строки
@@ -17,12 +19,13 @@ Host someinternalhost
 HostName 10.128.0.19
 User appuser
 ProxyCommand ssh -A appuser@bastion nc %h %p
-
+```sh
 Host bastion
 HostName 51.250.3.116
 User appuser
-
+```
 3. С помощью сервисов sslip.io/xip.io и Let’s Encrypt реализуйте использование валидного сертификата для панели управления VPN-сервера.
+
 Решение:
 
 Реализовано - https://51-250-3-116.sslip.io/
@@ -43,12 +46,33 @@ User appuser
 4. Добавьте в ваш репозиторий Infra (ветка cloud-bastion ):
    - файл setupvpn.sh
    - конфигурационный файл для подключения к VPN
+
 Решение:
 
 Файлы добавлены.
 
 5. Опишите в README.md и получившуюся конфигурацию и данные для подключения.
-Решение:
 
+Решение:
+```sh
 bastion_IP = 51.250.3.116
 someinternalhost_IP = 10.128.0.19
+```
+## ДЗ №5.
+```sh
+testapp_IP = 51.250.92.247
+testapp_port = 9292
+```
+
+Сделан cloud-config.yam для установки пакетов, деплоя приложения и его запуска.
+Команда для создания инстанса с уже запущенным приложением.
+```sh
+yc compute instance create \
+  --name reddit-app \
+  --hostname reddit-app \
+  --memory=4 \
+  --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1604-lts,size=10GB \
+  --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
+  --metadata serial-port-enable=1 \
+  --metadata-from-file user-data=cloud-config.yaml
+```
