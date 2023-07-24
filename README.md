@@ -76,3 +76,9 @@ yc compute instance create \
   --metadata serial-port-enable=1 \
   --metadata-from-file user-data=cloud-config.yaml
 ```
+## ДЗ №6.
+Сборка образов VM при помощи Packer
+- Сделан базовый шаблон
+- Выполнена параметризация
+- Сделан bake-образ
+- Добавлен скрипт создания ВМ из образа create-reddit-vm.sh
