@@ -1,5 +1,5 @@
 {
-  "key_file": "./testuser/key.json",
+  "key_file": "../key.json",
   "folder_id": "iweuriuoyuuiysdwwqtye897234",
   "src_image_family": "centos-7",
   "subnet_id": "uiyuywq89uqwye309234iu"
